@@ -3,14 +3,13 @@ using Il2CppMonomiPark.SlimeRancher;
 using Il2CppMonomiPark.SlimeRancher.Weather;
 using MelonLoader;
 using MoreSlimefall.Components;
-using MoreSlimefall.Data.Weather;
+using MoreSlimefall.Data.Weathers;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static Il2CppSystem.Linq.Expressions.Interpreter.CastInstruction.CastInstructionNoT;
 
 namespace MoreSlimefall.Harmony.Other
 {

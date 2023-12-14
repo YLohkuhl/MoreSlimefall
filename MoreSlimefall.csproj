@@ -26,12 +26,17 @@
     <Compile Remove="Assist\Helpers\Archived\ChevronHelper.cs" />
     <Compile Remove="Assist\Helpers\ChevronHelper.cs" />
     <Compile Remove="Data\ExtensionTest.cs" />
+    <Compile Remove="Examples\SlimefallExtensionExample.cs" />
     <Compile Remove="Harmony\Other\Archived\SpawnActivityResetSpawnTimePatch.cs" />
     <Compile Remove="Harmony\Other\SpawnActivityResetSpawnTimePatch.cs" />
   </ItemGroup>
 
   <ItemGroup>
     <None Remove="Files\ABs\more_slimefall" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Examples\SlimefallExtensionExample.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -75,10 +80,6 @@
     <Reference Include="UnityEngine.VFXModule">
       <HintPath>..\..\..\..\System\SteamLibrary\steamapps\common\Slime Rancher 2\MelonLoader\Il2CppAssemblies\UnityEngine.VFXModule.dll</HintPath>
     </Reference>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Data\Weather\Valley\" />
   </ItemGroup>
 
   <ItemGroup>

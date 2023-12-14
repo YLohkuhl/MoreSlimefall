@@ -1,11 +1,8 @@
-﻿using Il2CppMonomiPark.SlimeRancher.Weather;
-using Il2CppMonomiPark.SlimeRancher.Weather.Activity;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static MoreSlimefall.Assist.LocalSpawnActivities;
 
 namespace MoreSlimefall.Assist
 {

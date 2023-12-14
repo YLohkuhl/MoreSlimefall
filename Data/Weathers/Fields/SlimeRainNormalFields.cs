@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MoreSlimefall.Data.Weather
+namespace MoreSlimefall.Data.Weathers
 {
     internal class SlimeRainNormalFields
     {
@@ -21,7 +21,6 @@ namespace MoreSlimefall.Data.Weather
                         LocalWeathers.slimeRainStateFields.Activities.Remove(toArray.FirstOrDefault(x => x?.Activity == Get<SpawnActorActivity>("Rain Pink Slimes")));
 
                         LocalWeathers.slimeRainStateFields.Activities.TryAdd(WeatherHelper.CreateStateActivity(1, LocalSpawnActivities.globalRainPinkSlimes));
-                        LocalWeathers.slimeRainStateFields.Activities.TryAdd(WeatherHelper.CreateStateActivity(1, LocalSpawnActivities.fieldsRainCottonSlimes));
                         break;
                     }
             }

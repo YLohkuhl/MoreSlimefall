@@ -6,8 +6,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Il2CppMonomiPark.ScriptedValue;
 
-namespace MoreSlimefall.Data.Weather
+namespace MoreSlimefall.Data.Weathers
 {
     internal class SlimeRainSevereStrand
     {
@@ -36,6 +37,11 @@ namespace MoreSlimefall.Data.Weather
                         WeatherHelper.RegisterWeatherState(slimeRainSevereStrand);
                         break;
                     }
+                case "PlayerCore":
+                    {
+                        HandleOutbreakTransition();
+                        break;
+                    }
             }
         }
 
@@ -62,13 +68,32 @@ namespace MoreSlimefall.Data.Weather
             Il2CppSystem.Collections.Generic.List<WeatherPatternDefinition.Transition> transitions = new();
             transitions.TryAdd(WeatherHelper.CreatePatternTransition(toNoneChance, null, Array.Empty<AbstractWeatherCondition>()));
             transitions.TryAdd(WeatherHelper.CreatePatternTransition(toPreviousChance, SlimeRainModerateStrand.slimeRainModerateStrand, Array.Empty<AbstractWeatherCondition>()));
-            transitions.TryAdd(WeatherHelper.CreatePatternTransition(toOutbreakChance, SlimeRainOutbreak.slimeRainOutbreak, Array.Empty<AbstractWeatherCondition>()));
 
             LocalWeathers.slimeRainPatternStrand.RunningTransitions.TryAdd(new WeatherPatternDefinition.TransitionList()
             {
                 FromState = slimeRainSevereStrand,
                 Transitions = transitions
             });
+        }
+
+        private static void HandleOutbreakTransition()
+        {
+            ScriptedBool tarrEnabled = Get<ScriptedBool>("TarrEnabled");
+            if (tarrEnabled.Value)
+            {
+                foreach (var keyValuePair in LocalDictionaries.IL2CPP_zoneToPatternDict)
+                {
+                    var pattern = keyValuePair.Value;
+                    foreach (var transitionList in pattern?.RunningTransitions)
+                    {
+                        if (transitionList?.FromState == slimeRainSevereStrand)
+                        {
+                            if (transitionList.Transitions.ToArray().FirstOrDefault(x => x?.ToState == SlimeRainOutbreak.slimeRainOutbreak).IsNull())
+                                transitionList.Transitions.TryAdd(WeatherHelper.CreatePatternTransition(toOutbreakChance, SlimeRainOutbreak.slimeRainOutbreak, Array.Empty<AbstractWeatherCondition>()));
+                        }
+                    }
+                }
+            }
         }
     }
 }

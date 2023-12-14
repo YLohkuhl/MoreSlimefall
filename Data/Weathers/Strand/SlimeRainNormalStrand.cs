@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MoreSlimefall.Data.Weather
+namespace MoreSlimefall.Data.Weathers
 {
     internal class SlimeRainNormalStrand
     {

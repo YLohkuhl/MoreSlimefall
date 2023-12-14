@@ -17,7 +17,7 @@ namespace MoreSlimefall.Extension
     /// 
     /// <code>
     /// 
-    /// Use <see cref="ExtensionHelper.LoadExtension"/> in your <see cref="MelonMod.OnSceneWasLoaded"/> on the "GameCore" scene to load the extension.<br></br><br></br>
+    /// Use <see cref="ExtensionHelper.LoadExtension"/> in your <see cref="MelonMod.OnSceneWasLoaded"/> of the which you should provide the <see cref="string"/> sceneName parameter to load the extension.<br></br><br></br>
     /// 
     /// <see cref="ExtensionHelper.LoadAllExtensions"/> is also optional to load ALL extensions within the <see cref="MelonBase.MelonAssembly"/>.
     /// This includes every class that inherits <see cref="MoreSlimefallExtension"/>.<br></br><br></br>
@@ -72,10 +72,12 @@ namespace MoreSlimefall.Extension
         /// </summary>
         public abstract ZoneDefinition[] ShowForZones { get; }
 
+        /*
         /// <summary>
-        /// The initil
+        /// The initialization of <see cref="MelonLoader"/>.
         /// </summary>
         public abstract void OnInitialize();
+        */
 
         /// <summary>
         /// Loaded on "SystemCore". Mostly won't need this but could be used for very early things.
@@ -83,12 +85,13 @@ namespace MoreSlimefall.Extension
         public abstract void OnSystemCore();
 
         /// <summary>
-        /// Loaded on "GameCore". Where most of everything should be created, feel free to use separate methods and call them here.
+        /// Loaded on "GameCore". Where most of everything should be created including things you may usually do in <see cref="MelonBase.OnInitializeMelon"/>.<br></br>
+        /// Feel free to use separate methods and call them here.
         /// </summary>
         public abstract void OnGameCore();
 
         /// <summary>
-        /// Loaded on "zoneCore". Loads everytime a save is loaded, usually only used for specific situations.
+        /// Loaded on "zoneCore". Loads everytime a save is loaded, usually only used for specific situations that may relate to how the weather operates.
         /// </summary>
         public abstract void OnZoneCore();
     }

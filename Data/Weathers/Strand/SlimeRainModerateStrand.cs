@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MoreSlimefall.Data.Weather
+namespace MoreSlimefall.Data.Weathers
 {
     internal class SlimeRainModerateStrand
     {
@@ -48,7 +48,8 @@ namespace MoreSlimefall.Data.Weather
 
             moderateStrandActivities.TryAdd(WeatherHelper.CreateStateActivity(1, LocalSpawnActivities.strandRainCottonSlimes));
             moderateStrandActivities.TryAdd(WeatherHelper.CreateStateActivity(1, LocalSpawnActivities.strandRainAnglerSlimes));
-            moderateStrandActivities.TryAdd(WeatherHelper.CreateStateActivity(1, LocalSpawnActivities.strandRainPhosphorSlimes));
+            moderateStrandActivities.TryAdd(WeatherHelper.CreateStateActivity(1, LocalSpawnActivities.strandRainHoneySlimes));
+            moderateStrandActivities.TryAdd(WeatherHelper.CreateStateActivity(1, LocalSpawnActivities.globalRainPhosphorSlimes));
         }
 
         private static void CreateTransitions()

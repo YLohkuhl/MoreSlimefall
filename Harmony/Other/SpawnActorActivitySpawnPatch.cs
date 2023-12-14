@@ -21,7 +21,7 @@ namespace MoreSlimefall.Harmony.Other
         };*/
 
 
-        public static void Postfix(SpawnActorActivity __instance)
+        public static void Postfix(SpawnActorActivity __instance, ref GameObject __result)
         {
             if (__instance == LocalSpawnActivities.globalRainRareSlimes)
                 if (__instance.ActorType)
@@ -32,6 +32,10 @@ namespace MoreSlimefall.Harmony.Other
         {
             if (LocalSpawnActivities._nighttimeSpawnActivities.FirstOrDefault(x => x == __instance))
                 if (!IsNighttime())
+                    return false;
+
+            if (__instance == LocalSpawnActivities.valleyRainFireSlimes)
+                if (IsHeavyRain())
                     return false;
 
             if (__instance == LocalSpawnActivities.globalRainPuddleSlimes)
@@ -49,7 +53,7 @@ namespace MoreSlimefall.Harmony.Other
             if (__instance == LocalSpawnActivities.globalRainRareSlimes)
             {
                 var picked = URandoms.PickWeight(LocalSpawnWeights._weightedRareFallingActors, null);
-                if (picked.IsNotNull() || !picked.Equals(LocalSpawnActivities.globalRainPinkSlimes))
+                if (picked.IsNotNull() || !picked == LocalSpawnActivities.globalRainPinkSlimes.ActorType)
                     __instance.ActorType = picked;
                 else
                     return false;
@@ -81,5 +85,12 @@ namespace MoreSlimefall.Harmony.Other
             var weatherDirector = UnityEngine.Object.FindObjectOfType<WeatherDirector>();
             return weatherDirector._runningStates.ToArray().FirstOrDefault(x => x?.ToWeatherState() == LocalWeathers.pollenHeavyState, null).IsNotNull();
         }
+
+        /*public static bool IsRainTooHeavy()
+        {
+            var weatherDirector = UnityEngine.Object.FindObjectOfType<WeatherDirector>();
+            return weatherDirector._runningStates.ToArray().FirstOrDefault(
+                x => x?.ToWeatherState() == LocalWeathers.rainMedState || x?.ToWeatherState() == LocalWeathers.rainHeavyState, null).IsNotNull();
+        }*/
     }
 }

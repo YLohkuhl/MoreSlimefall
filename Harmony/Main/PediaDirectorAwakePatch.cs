@@ -19,7 +19,8 @@ namespace MoreSlimefall.Harmony
             foreach (var fixedPediaEntry in weatherPediasToPatch)
             {
                 fixedPediaEntry._unlockInfoProvider = __instance.Cast<IUnlockInfoProvider>();
-                weatherCategory._items = weatherCategory._items.ToArray().TryAdd(fixedPediaEntry);
+                if (!weatherCategory.Items.ToArray().FirstOrDefault(x => x == fixedPediaEntry))
+                    weatherCategory._items = weatherCategory._items.ToArray().TryAdd(fixedPediaEntry);
             }
         }
     }

@@ -1,4 +1,5 @@
 ﻿using Il2CppMonomiPark.SlimeRancher.Weather;
+using MoreSlimefall.Extension;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,56 +8,130 @@ using System.Threading.Tasks;
 
 namespace MoreSlimefall.Assist
 {
-    internal class LocalWeathers
+    /// <summary>
+    /// Preset <see cref="WeatherStateDefinition"/> and <see cref="WeatherPatternDefinition"/> that the <see cref="MoreSlimefall"/> mod uses.<br></br>
+    /// Feel free to use them for any of your needs, call on <see cref="MoreSlimefallExtension.OnGameCore"/> or afterwards otherwise they could be null.
+    /// </summary>
+    public static class LocalWeathers
     {
-        // STATES
-        internal static WeatherStateDefinition rainLightState;
-        internal static WeatherStateDefinition rainMedState;
-        internal static WeatherStateDefinition rainHeavyState;
+        #region STATES
+        public static WeatherStateDefinition rainLightState 
+        { 
+            get 
+            { 
+                return Get<WeatherStateDefinition>("Rain Light State"); 
+            } 
+        }
 
-        internal static WeatherStateDefinition windHeavyState;
-        internal static WeatherStateDefinition pollenHeavyState;
+        public static WeatherStateDefinition rainMedState 
+        { 
+            get 
+            { 
+                return Get<WeatherStateDefinition>("Rain Med State"); 
+            } 
+        
+        }
+        public static WeatherStateDefinition rainHeavyState 
+        { 
+            get 
+            { 
+                return Get<WeatherStateDefinition>("Rain Heavy State"); 
+            } 
+        }
 
-        internal static WeatherStateDefinition slimeRainStateFields;
-        internal static WeatherStateDefinition slimeRainStateStrand;
-        internal static WeatherStateDefinition slimeRainStateValley;
-        internal static WeatherStateDefinition slimeRainStateBluffs;
+        public static WeatherStateDefinition windHeavyState 
+        { 
+            get 
+            { 
+                return Get<WeatherStateDefinition>("Wind Heavy State"); 
+            } 
+        }
 
-        // PATTERNS
-        internal static WeatherPatternDefinition slimeRainPatternFields;
-        internal static WeatherPatternDefinition slimeRainPatternStrand;
-        internal static WeatherPatternDefinition slimeRainPatternValley;
-        internal static WeatherPatternDefinition slimeRainPatternBluffs;
+        public static WeatherStateDefinition pollenHeavyState 
+        { 
+            get 
+            { 
+                return Get<WeatherStateDefinition>("Pollen Heavy State"); 
+            } 
+        }
 
-        public static void Load(string sceneName)
+        public static WeatherStateDefinition slimeRainStateFields
+        {
+            get
+            {
+                return Get<WeatherStateDefinition>("Slime Rain State Fields");
+            }
+        }
+
+        public static WeatherStateDefinition slimeRainStateStrand
+        {
+            get
+            {
+                return Get<WeatherStateDefinition>("Slime Rain State Strand");
+            }
+        }
+
+        public static WeatherStateDefinition slimeRainStateValley
+        {
+            get
+            {
+                return Get<WeatherStateDefinition>("Slime Rain State Valley");
+            }
+        }
+
+        public static WeatherStateDefinition slimeRainStateBluffs
+        {
+            get
+            {
+                return Get<WeatherStateDefinition>("Slime Rain State Bluffs");
+            }
+        }
+        #endregion
+
+        #region PATTERNS
+        public static WeatherPatternDefinition slimeRainPatternFields
+        {
+            get
+            {
+                return Get<WeatherPatternDefinition>("Slime Rain Pattern Fields");
+            }
+        }
+
+        public static WeatherPatternDefinition slimeRainPatternStrand
+        {
+            get
+            {
+                return Get<WeatherPatternDefinition>("Slime Rain Pattern Strand");
+            }
+        }
+
+        public static WeatherPatternDefinition slimeRainPatternValley
+        {
+            get
+            {
+                return Get<WeatherPatternDefinition>("Slime Rain Pattern Valley");
+            }
+        }
+
+        public static WeatherPatternDefinition slimeRainPatternBluffs
+        {
+            get
+            {
+                return Get<WeatherPatternDefinition>("Slime Rain Pattern Bluffs");
+            }
+        }
+        #endregion
+
+        internal static void Load(string sceneName)
         {
             switch (sceneName)
             {
                 case "GameCore":
                     {
-                        // STATES
-                        rainLightState = Get<WeatherStateDefinition>("Rain Light State");
-                        rainMedState = Get<WeatherStateDefinition>("Rain Med State");
-                        rainHeavyState = Get<WeatherStateDefinition>("Rain Heavy State");
-
-                        windHeavyState = Get<WeatherStateDefinition>("Wind Heavy State");
-                        pollenHeavyState = Get<WeatherStateDefinition>("Pollen Heavy State");
-
-                        slimeRainStateFields = Get<WeatherStateDefinition>("Slime Rain State Fields");
-                        slimeRainStateStrand = Get<WeatherStateDefinition>("Slime Rain State Strand");
-                        slimeRainStateValley = Get<WeatherStateDefinition>("Slime Rain State Valley");
-                        slimeRainStateBluffs = Get<WeatherStateDefinition>("Slime Rain State Bluffs");
-
                         slimeRainStateFields.MapTier = 1;
                         slimeRainStateStrand.MapTier = 1;
                         slimeRainStateValley.MapTier = 1;
                         slimeRainStateBluffs.MapTier = 1;
-
-                        // PATTERNS
-                        slimeRainPatternFields = Get<WeatherPatternDefinition>("Slime Rain Pattern Fields");
-                        slimeRainPatternStrand = Get<WeatherPatternDefinition>("Slime Rain Pattern Strand");
-                        slimeRainPatternValley = Get<WeatherPatternDefinition>("Slime Rain Pattern Valley");
-                        slimeRainPatternBluffs = Get<WeatherPatternDefinition>("Slime Rain Pattern Bluffs");
                         break;
                     }
             }

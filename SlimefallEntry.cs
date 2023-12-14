@@ -3,14 +3,15 @@ global using UnityEngine;
 global using static Utility;
 using MelonLoader;
 using MoreSlimefall;
-using MoreSlimefall.Data.Weather;
+using MoreSlimefall.Data.Weathers;
 using MoreSlimefall.Assist;
 using Il2CppMonomiPark.SlimeRancher;
 using MoreSlimefall.Components;
 using MoreSlimefall.Data;
 using MoreSlimefall.Assist.Extension;
+using Il2CppMonomiPark.ScriptedValue;
 
-[assembly: MelonInfo(typeof(SlimefallEntry), "More Slimefall", "1.0.0", "FruitsyOG")]
+[assembly: MelonInfo(typeof(SlimefallEntry), "More Slimefall", "1.0.0", "FruitsyOG", "https://www.nexusmods.com/slimerancher2/mods/72")]
 [assembly: MelonGame("MonomiPark", "SlimeRancher2")]
 [assembly: MelonColor(0, 84, 231, 222)]
 namespace MoreSlimefall
@@ -30,11 +31,18 @@ namespace MoreSlimefall
             // --- STRAND
             SlimeRainModerateStrand.Initialize();
             SlimeRainSevereStrand.Initialize();
+
+            // -- VALLEY
+            SlimeRainModerateValley.Initialize();
+            SlimeRainSevereValley.Initialize();
+
+            // -- BLUFFS
+            SlimeRainModerateBluffs.Initialize();
+            SlimeRainSevereBluffs.Initialize();
         }
 
         public override void OnSceneWasLoaded(int buildIndex, string sceneName)
         {
-            // ExtensionHelper.LoadAllExtensions(MelonAssembly.Assembly, sceneName);
             /*if (sceneName.Equals("UICore"))
                 ChevronHelper.AddWeatherChevron(LoadHex("#e63737"), LoadHex("#803636"));*/
 
@@ -64,6 +72,16 @@ namespace MoreSlimefall
             SlimeRainNormalStrand.Load(sceneName);
             SlimeRainModerateStrand.Load(sceneName);
             SlimeRainSevereStrand.Load(sceneName);
+
+            // -- VALLEY
+            SlimeRainNormalValley.Load(sceneName);
+            SlimeRainModerateValley.Load(sceneName);
+            SlimeRainSevereValley.Load(sceneName);
+
+            // -- BLUFFS
+            SlimeRainNormalBluffs.Load(sceneName);
+            SlimeRainModerateBluffs.Load(sceneName);
+            SlimeRainSevereBluffs.Load(sceneName);
 
             // -- LATE OTHER
             LocalDictionaries.Load(sceneName);

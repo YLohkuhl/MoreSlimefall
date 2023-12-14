@@ -1,7 +1,7 @@
 ﻿using Il2CppMonomiPark.SlimeRancher;
 using Il2CppMonomiPark.SlimeRancher.Weather;
 using MelonLoader;
-using MoreSlimefall.Data.Weather;
+using MoreSlimefall.Data.Weathers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.VFX;
-using static MoreSlimefall.Data.Weather.SlimeRainOutbreak;
+using static MoreSlimefall.Data.Weathers.SlimeRainOutbreak;
 
 namespace MoreSlimefall.Components
 {

@@ -47,7 +47,7 @@ namespace MoreSlimefall.Assist.Extension
                     {
                         ext.StateDefinition = WeatherHelper.CreateWeatherState(ext.Name, ext.StateActivities, ext.SlimefallTier, ext.MinDurationHours);
 
-                        ext.OnInitialize();
+                        // ext.OnInitialize();
                         ext.OnGameCore();
                         GenerateExtensionTransitions(ext);
 
@@ -68,23 +68,18 @@ namespace MoreSlimefall.Assist.Extension
 
             foreach (ZoneDefinition zone in ext.ShowForZones)
             {
-                MelonLogger.Msg(zone == null);
                 if (IL2CPP_zoneToPatternDict.ContainsKey(zone))
                 {
                     var toArray = IL2CPP_zoneToPatternDict[zone].RunningTransitions.ToArray();
-                    MelonLogger.Msg(toArray == null);
                     int index = IL2CPP_zoneToPatternDict[zone].RunningTransitions.IndexOf(toArray.FirstOrDefault(x => x?.FromState == IL2CPP_zoneToStatesDict[zone][ext.SlimefallTier - 1]));
-                    MelonLogger.Msg(index);
-                    IL2CPP_zoneToPatternDict[zone].RunningTransitions[index].Transitions.TryAdd(
-                        WeatherHelper.CreatePatternTransition(ext.StartChancePerHour, ext.StateDefinition, Array.Empty<AbstractWeatherCondition>()));
-                    MelonLogger.Msg(IL2CPP_zoneToPatternDict[zone].RunningTransitions[index] == null);
+                    IL2CPP_zoneToPatternDict[zone].RunningTransitions[index].Transitions
+                        .TryAdd(WeatherHelper.CreatePatternTransition(ext.StartChancePerHour, ext.StateDefinition, Array.Empty<AbstractWeatherCondition>()));
                 }
             }
             ext.StateTransitions.TryAdd(WeatherHelper.CreatePatternTransition(ext.StopChancePerHour, null, Array.Empty<AbstractWeatherCondition>()));
 
             foreach (ZoneDefinition zone in ext.ShowForZones)
             {
-                MelonLogger.Msg(zone == null);
                 if (IL2CPP_zoneToPatternDict.ContainsKey(zone))
                 {
                     IL2CPP_zoneToPatternDict[zone].RunningTransitions.TryAdd(new WeatherPatternDefinition.TransitionList()

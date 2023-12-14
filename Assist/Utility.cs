@@ -1,8 +1,10 @@
 ﻿using HarmonyLib;
+using Il2CppInterop.Runtime.InteropTypes;
 using Il2CppMonomiPark.SlimeRancher.Weather;
 using Il2CppMonomiPark.SlimeRancher.World;
+using MelonLoader;
 using MoreSlimefall.Assist;
-using MoreSlimefall.Data.Weather;
+using MoreSlimefall.Data.Weathers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -83,9 +85,32 @@ internal static class WeatherTest
     {
         RunState(Get<ZoneDefinition>("RainbowFields"), LocalWeathers.slimeRainPatternFields, SlimeRainOutbreak.slimeRainOutbreak);
     }
+
+    public static void GetSpawnableSlimes()
+    {
+        List<IdentifiableType> cached = new();
+
+        foreach (var spawner in UnityEngine.Object.FindObjectsOfType<DirectedSlimeSpawner>(true))
+        {
+            if (spawner)
+            {
+                foreach (var constraint in spawner.Constraints)
+                {
+                    foreach (var member in constraint.Slimeset.Members)
+                    {
+                        if (!cached.FirstOrDefault(x => x == member.IdentType))
+                            cached.TryAdd(member.IdentType);
+                    }
+                }
+            }
+        }
+
+        foreach (var ident in cached)
+            MelonLogger.Msg(ident.name);
+    }
 }
 
-internal static class WeatherExtensions
+public static class WeatherExtensions
 {
     public static WeatherStateDefinition ToWeatherState(this IWeatherState iState) => iState?.TryCast<WeatherStateDefinition>();
 

@@ -2,7 +2,7 @@
 using Il2CppMonomiPark.SlimeRancher.Weather;
 using Il2CppMonomiPark.SlimeRancher.World;
 using MoreSlimefall.Assist.Extension;
-using MoreSlimefall.Data.Weather;
+using MoreSlimefall.Data.Weathers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -50,7 +50,7 @@ namespace MoreSlimefall.Assist
                 {
                     {
                         WeatherZones.RAINBOW_FIELDS,
-                        new WeatherStateDefinition[]
+                        new[]
                         {
                             LocalWeathers.slimeRainStateFields,
                             SlimeRainModerateFields.slimeRainModerateFields,
@@ -59,7 +59,7 @@ namespace MoreSlimefall.Assist
                     },
                     {
                         WeatherZones.STARLIGHT_STRAND,
-                        new WeatherStateDefinition[]
+                        new[]
                         {
                             LocalWeathers.slimeRainStateStrand,
                             SlimeRainModerateStrand.slimeRainModerateStrand,
@@ -68,16 +68,20 @@ namespace MoreSlimefall.Assist
                     },
                     {
                         WeatherZones.EMBER_VALLEY,
-                        new WeatherStateDefinition[]
+                        new[]
                         {
-                            LocalWeathers.slimeRainStateValley
+                            LocalWeathers.slimeRainStateValley,
+                            SlimeRainModerateValley.slimeRainModerateValley,
+                            SlimeRainSevereValley.slimeRainSevereValley
                         }
                     },
                     {
                         WeatherZones.POWDERFALL_BLUFFS,
-                        new WeatherStateDefinition[]
+                        new[]
                         {
-                            LocalWeathers.slimeRainStateBluffs
+                            LocalWeathers.slimeRainStateBluffs,
+                            SlimeRainModerateBluffs.slimeRainModerateBluffs,
+                            SlimeRainSevereBluffs.slimeRainSevereBluffs
                         }
                     }
                 };

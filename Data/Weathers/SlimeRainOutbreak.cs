@@ -11,8 +11,10 @@ using Il2CppMonomiPark.SlimeRancher;
 using Il2CppMonomiPark.SlimeRancher.Pedia;
 using UnityEngine.Localization;
 using UnityEngine.VFX;
+using Il2CppMonomiPark.ScriptedValue;
+using MelonLoader;
 
-namespace MoreSlimefall.Data.Weather
+namespace MoreSlimefall.Data.Weathers
 {
     internal class SlimeRainOutbreak
     {
@@ -71,6 +73,11 @@ namespace MoreSlimefall.Data.Weather
                         CreateTransitions();
 
                         WeatherHelper.RegisterWeatherState(slimeRainOutbreak);
+                        break;
+                    }
+                case "PlayerCore":
+                    {
+                        HandleOutbreakTransitions();
                         break;
                     }
             }
@@ -134,7 +141,7 @@ namespace MoreSlimefall.Data.Weather
                 currentRainHeavyStates
             }));
 
-            WeatherPatternDefinition.TransitionList transitionList = new WeatherPatternDefinition.TransitionList()
+            WeatherPatternDefinition.TransitionList transitionList = new()
             {
                 FromState = slimeRainOutbreak,
                 Transitions = transitions
@@ -144,6 +151,27 @@ namespace MoreSlimefall.Data.Weather
             LocalWeathers.slimeRainPatternStrand.RunningTransitions.TryAdd(transitionList);
             LocalWeathers.slimeRainPatternValley.RunningTransitions.TryAdd(transitionList);
             LocalWeathers.slimeRainPatternBluffs.RunningTransitions.TryAdd(transitionList);
+        }
+
+        private static void HandleOutbreakTransitions()
+        {
+            ScriptedBool tarrEnabled = Get<ScriptedBool>("TarrEnabled");
+            if (!tarrEnabled.Value)
+            {
+                foreach (var keyValuePair in LocalDictionaries.IL2CPP_zoneToPatternDict)
+                {
+                    var pattern = keyValuePair.Value;
+                    foreach (var transitionList in pattern?.RunningTransitions)
+                    {
+                        List<WeatherPatternDefinition.Transition> copyOfTransitions = new(transitionList?.Transitions?.ToArray().ToList());
+                        foreach (var transition in copyOfTransitions)
+                        {
+                            if (transition?.ToState == slimeRainOutbreak)
+                                transitionList?.Transitions?.Remove(transition);
+                        }
+                    }
+                }
+            }
         }
     }
 }
