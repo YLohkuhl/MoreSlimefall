@@ -28,12 +28,18 @@ namespace MoreSlimefall.Extension
     /// </summary>
     public abstract class MoreSlimefallExtension
     {
+        /// <summary>
+        /// The possible <see cref="WeatherPatternDefinition.Transition"/> transitions of this <see cref="StateDefinition"/> to another <see cref="WeatherStateDefinition"/>.
+        /// </summary>
         public Il2CppSystem.Collections.Generic.List<WeatherPatternDefinition.Transition> StateTransitions = new();
 
+        /// <summary>
+        /// The activities of this <see cref="StateDefinition"/>.
+        /// </summary>
         public Il2CppSystem.Collections.Generic.List<WeatherStateDefinition.ActivityIntensityMapping> StateActivities = new();
 
         /// <summary>
-        /// The <see cref="WeatherStateDefinition"/> of this <see cref="MoreSlimefallExtension"/>."/>
+        /// The <see cref="WeatherStateDefinition.ActivityIntensityMapping"/> activities of this <see cref="MoreSlimefallExtension"/>."/>
         /// </summary>
         public WeatherStateDefinition StateDefinition { get; set; }
 
