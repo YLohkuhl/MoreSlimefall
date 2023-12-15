@@ -53,7 +53,7 @@ namespace MoreSlimefall.Harmony.Other
             if (__instance == LocalSpawnActivities.globalRainRareSlimes)
             {
                 var picked = URandoms.PickWeight(LocalSpawnWeights._weightedRareFallingActors, null);
-                if (picked.IsNotNull() || !picked == LocalSpawnActivities.globalRainPinkSlimes.ActorType)
+                if (picked.IsNotNull() && !picked == LocalSpawnActivities.globalRainPinkSlimes.ActorType)
                     __instance.ActorType = picked;
                 else
                     return false;
