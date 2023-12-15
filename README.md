@@ -24,6 +24,7 @@ When this occurs, you will receive a slimepedia entry on it.
 ### Global
 
 Global spawns are spawns that can occur in almost every zone at the same amount of time each time, unlike zoned spawns which can change depending on the zone.
+
 *EX: Phosphor falls every 5 seconds for each zone, while a zoned version may fall every 10 seconds if changed.*
 
 - **Phosphor (Moderate)**
