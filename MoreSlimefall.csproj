@@ -7,9 +7,9 @@
 	<DebugType>embedded</DebugType>
 	<GenerateDocumentationFile>True</GenerateDocumentationFile>
 	<Title>More Slimefall</Title>
-	<VersionPrefix>1.0.0</VersionPrefix>
+	<VersionPrefix>1.0.1</VersionPrefix>
 	<Description>A Slime Rancher 2 mod that adds more to the "Slimefall" weather, such as tiers.</Description>
-	<Copyright>Copyright @ FruitsyOG 2023</Copyright>
+	<Copyright>Copyright @ FruitsyOG 2024</Copyright>
 	<AssemblyVersion>$(VersionPrefix)</AssemblyVersion>
 	<FileVersion>$(VersionPrefix)</FileVersion>
   </PropertyGroup>
