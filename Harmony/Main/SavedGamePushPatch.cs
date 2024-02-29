@@ -19,7 +19,7 @@ namespace MoreSlimefall.Harmony
         {
             foreach (var pediaEntry in pediasToPatch)
                 if (pediaEntry)
-                    __instance.pediaEntryLookup.TryAdd(pediaEntry.GetPersistenceId(), pediaEntry);
+                    __instance.pediaEntryLookup.TryAdd(pediaEntry.PersistenceId, pediaEntry);
 
             var stateTranslation = __instance._weatherStateTranslation;
             foreach (var weatherState in weatherStatesToPatch)

@@ -15,11 +15,11 @@ namespace MoreSlimefall.Harmony
     {
         public static void Prefix(PediaDirector __instance)
         {
-            PediaEntryCategory weatherCategory = __instance._pediaConfiguration.Categories.ToArray().First(x => x.name == "Weather");
+            PediaCategory weatherCategory = __instance._pediaConfiguration.Categories.ToArray().First(x => x.name == "Weather");
             foreach (var fixedPediaEntry in weatherPediasToPatch)
             {
                 fixedPediaEntry._unlockInfoProvider = __instance.Cast<IUnlockInfoProvider>();
-                if (!weatherCategory.Items.ToArray().FirstOrDefault(x => x == fixedPediaEntry))
+                if (!weatherCategory._items.FirstOrDefault(x => x == fixedPediaEntry))
                     weatherCategory._items = weatherCategory._items.ToArray().TryAdd(fixedPediaEntry);
             }
         }

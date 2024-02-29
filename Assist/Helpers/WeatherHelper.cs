@@ -77,18 +77,18 @@ namespace MoreSlimefall.Assist
             LocalizedString intro = TranslationHelper.CreateTranslation("Pedia", "m.intro." + textId, pediaIntro);
             LocalizedString description = TranslationHelper.CreateTranslation("PediaPage", "m.desc." + textId, pediaDescription);
 
-            PediaEntry.PediaPagesEntry[] pediaPagesEntries = new PediaEntry.PediaPagesEntry[]
+            PediaEntryDetail[] pediaEntryDetails = new PediaEntryDetail[]
             {
-                new PediaEntry.PediaPagesEntry()
+                new PediaEntryDetail()
                 {
-                    PediaPage = Get<PediaPage>("Description"),
+                    Section = Get<PediaDetailSection>("About"),
                     Text = description,
                     TextGamepad = description,
                     TextPS4 = description
                 }
             };
 
-            FixedPediaEntry fixedPediaEntry = PediaHelper.CreateFixedEntry(pediaEntryName, textId, pediaIcon, Get<PediaTemplate>("DescriptionPediaTemplate"), title, intro, pediaPagesEntries);
+            FixedPediaEntry fixedPediaEntry = PediaHelper.CreateFixedEntry(pediaEntryName, textId, pediaIcon, Get<PediaHighlightSet>("TutorialPediaTemplate"), title, intro, pediaEntryDetails);
             weatherPediasToPatch.TryAdd(fixedPediaEntry);
             PediaHelper.RegisterPediaEntry(fixedPediaEntry);
 

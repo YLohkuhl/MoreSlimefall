@@ -7,11 +7,8 @@ using MoreSlimefall.Data.Weathers;
 using MoreSlimefall.Assist;
 using Il2CppMonomiPark.SlimeRancher;
 using MoreSlimefall.Components;
-using MoreSlimefall.Data;
-using MoreSlimefall.Assist.Extension;
-using Il2CppMonomiPark.ScriptedValue;
 
-[assembly: MelonInfo(typeof(SlimefallEntry), "More Slimefall", "1.0.0", "FruitsyOG", "https://www.nexusmods.com/slimerancher2/mods/72")]
+[assembly: MelonInfo(typeof(SlimefallEntry), "More Slimefall", "1.0.1", "FruitsyOG", "https://www.nexusmods.com/slimerancher2/mods/72")]
 [assembly: MelonGame("MonomiPark", "SlimeRancher2")]
 [assembly: MelonColor(0, 84, 231, 222)]
 namespace MoreSlimefall

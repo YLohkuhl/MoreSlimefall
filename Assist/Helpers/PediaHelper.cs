@@ -14,8 +14,8 @@ namespace MoreSlimefall.Assist
 
         public static void RegisterPediaEntry(PediaEntry pediaEntry) => pediasToPatch.TryAdd(pediaEntry);
 
-        public static FixedPediaEntry CreateFixedEntry(string pediaEntryName, string pediaTextId, Sprite pediaIcon, PediaTemplate pediaTemplate,
-            LocalizedString pediaTitle, LocalizedString pediaIntro, PediaEntry.PediaPagesEntry[] pediaPageEntries, bool unlockedInitially = false)
+        public static FixedPediaEntry CreateFixedEntry(string pediaEntryName, string pediaPersistenceSuffix, Sprite pediaIcon, PediaHighlightSet pediaHighlightSet,
+            LocalizedString pediaTitle, LocalizedString pediaIntro, PediaEntryDetail[] pediaEntryDetails, bool unlockedInitially = false)
         {
             if (Get<FixedPediaEntry>(pediaEntryName))
                 return null;
@@ -28,9 +28,9 @@ namespace MoreSlimefall.Assist
             fixedPediaEntry._description = pediaIntro;
 
             fixedPediaEntry._icon = pediaIcon;
-            fixedPediaEntry._textId = pediaTextId;
-            fixedPediaEntry._template = pediaTemplate;
-            fixedPediaEntry._pageEntries = pediaPageEntries;
+            fixedPediaEntry._details = pediaEntryDetails;
+            fixedPediaEntry._highlightSet = pediaHighlightSet;
+            fixedPediaEntry._persistenceSuffix = pediaPersistenceSuffix;
             fixedPediaEntry._unlockInfoProvider = SceneContext.Instance?.PediaDirector?.Cast<IUnlockInfoProvider>();
             fixedPediaEntry._isUnlockedInitially = unlockedInitially;
 
