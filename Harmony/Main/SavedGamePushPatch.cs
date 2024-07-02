@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using HarmonyLib;
 using static MoreSlimefall.Assist.WeatherHelper;
 using static MoreSlimefall.Assist.PediaHelper;
+using MelonLoader;
 
 namespace MoreSlimefall.Harmony
 {
@@ -17,9 +18,9 @@ namespace MoreSlimefall.Harmony
     {
         public static void Prefix(SavedGame __instance)
         {
-            foreach (var pediaEntry in pediasToPatch)
+/*            foreach (var pediaEntry in pediasToPatch)
                 if (pediaEntry)
-                    __instance.pediaEntryLookup.TryAdd(pediaEntry.PersistenceId, pediaEntry);
+                    __instance.pediaEntryLookup.TryAdd(pediaEntry.PersistenceId, pediaEntry);*/
 
             var stateTranslation = __instance._weatherStateTranslation;
             foreach (var weatherState in weatherStatesToPatch)

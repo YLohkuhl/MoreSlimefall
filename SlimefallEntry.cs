@@ -8,7 +8,7 @@ using MoreSlimefall.Assist;
 using Il2CppMonomiPark.SlimeRancher;
 using MoreSlimefall.Components;
 
-[assembly: MelonInfo(typeof(SlimefallEntry), "More Slimefall", "1.0.1", "FruitsyOG", "https://www.nexusmods.com/slimerancher2/mods/72")]
+[assembly: MelonInfo(typeof(SlimefallEntry), "More Slimefall", "1.0.2", "YLohkuhl", "https://www.nexusmods.com/slimerancher2/mods/72")]
 [assembly: MelonGame("MonomiPark", "SlimeRancher2")]
 [assembly: MelonColor(0, 84, 231, 222)]
 namespace MoreSlimefall
@@ -51,7 +51,7 @@ namespace MoreSlimefall
             }
 
             // -- OTHER
-            LocalAssets.Load(sceneName);
+            // LocalAssets.Load(sceneName);
             LocalWeathers.Load(sceneName);
             LocalSpawnActivities.Load(sceneName);
             LocalSpawnWeights.Load(sceneName);

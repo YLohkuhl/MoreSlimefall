@@ -16,7 +16,7 @@ namespace MoreSlimefall.Assist
         internal static Il2CppSystem.Collections.Generic.Dictionary<ZoneDefinition, WeatherPatternDefinition> IL2CPP_zoneToPatternDict;
         internal static Il2CppSystem.Collections.Generic.Dictionary<ZoneDefinition, Il2CppReferenceArray<WeatherStateDefinition>> IL2CPP_zoneToStatesDict; 
 
-        private static Dictionary<ZoneDefinition, WeatherPatternDefinition> zoneToPatternDict
+        private static Dictionary<ZoneDefinition, WeatherPatternDefinition> ZoneToPatternDict
         {
             get
             {
@@ -42,7 +42,7 @@ namespace MoreSlimefall.Assist
             }
         }
 
-        private static Dictionary<ZoneDefinition, WeatherStateDefinition[]> zoneToStatesDict
+        private static Dictionary<ZoneDefinition, WeatherStateDefinition[]> ZoneToStatesDict
         {
             get
             {
@@ -97,9 +97,9 @@ namespace MoreSlimefall.Assist
                         IL2CPP_zoneToPatternDict = new();
                         IL2CPP_zoneToStatesDict = new();
 
-                        foreach (var keyValuePair in zoneToPatternDict)
+                        foreach (var keyValuePair in ZoneToPatternDict)
                             IL2CPP_zoneToPatternDict.TryAdd(keyValuePair.Key, keyValuePair.Value);
-                        foreach (var keyValuePair in zoneToStatesDict)
+                        foreach (var keyValuePair in ZoneToStatesDict)
                             IL2CPP_zoneToStatesDict.TryAdd(keyValuePair.Key, keyValuePair.Value);
                         break;
                     }

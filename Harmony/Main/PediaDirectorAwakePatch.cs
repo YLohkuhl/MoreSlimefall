@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using static MoreSlimefall.Assist.WeatherHelper;
+using static MoreSlimefall.Assist.PediaHelper;
 
 namespace MoreSlimefall.Harmony
 {
@@ -15,12 +15,14 @@ namespace MoreSlimefall.Harmony
     {
         public static void Prefix(PediaDirector __instance)
         {
-            PediaCategory weatherCategory = __instance._pediaConfiguration.Categories.ToArray().First(x => x.name == "Weather");
-            foreach (var fixedPediaEntry in weatherPediasToPatch)
+            foreach (var pediaEntry in pediasToPatch)
             {
-                fixedPediaEntry._unlockInfoProvider = __instance.Cast<IUnlockInfoProvider>();
-                if (!weatherCategory._items.FirstOrDefault(x => x == fixedPediaEntry))
-                    weatherCategory._items = weatherCategory._items.ToArray().TryAdd(fixedPediaEntry);
+                if (!pediaEntry)
+                    continue;
+
+                pediaEntry._unlockInfoProvider = __instance.Cast<IUnlockInfoProvider>();
+                if (pediaEntry._isUnlockedInitially)
+                    __instance._initUnlocked = __instance._initUnlocked.AddItem(pediaEntry).ToArray();
             }
         }
     }

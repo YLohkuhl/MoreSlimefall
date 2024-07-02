@@ -14,17 +14,10 @@ namespace MoreSlimefall.Assist
         // SPRITE
         internal static Sprite iconWeatherTarrainSpr;
 
-        public static void Load(string sceneName)
+        public static void PatchLoad()
         {
-            switch (sceneName)
-            {
-                case "GameCore":
-                    {
-                        iconWeatherTarrain = AB.more_slimefall.LoadAsset("iconWeatherTarrain").Cast<Texture2D>();
-                        iconWeatherTarrainSpr = iconWeatherTarrain.ToSprite();
-                        break;
-                    }
-            }
+            iconWeatherTarrain = AB.more_slimefall.LoadAsset("iconWeatherTarrain").Cast<Texture2D>();
+            iconWeatherTarrainSpr = iconWeatherTarrain.ToSprite();
         }
     }
 }

@@ -14,7 +14,6 @@ namespace MoreSlimefall.Assist
 {
     public static class WeatherHelper
     {
-        internal static HashSet<FixedPediaEntry> weatherPediasToPatch = new HashSet<FixedPediaEntry>();
         internal static HashSet<WeatherStateDefinition> weatherStatesToPatch = new HashSet<WeatherStateDefinition>();
 
         public static void RegisterWeatherState(WeatherStateDefinition weatherState)
@@ -47,9 +46,10 @@ namespace MoreSlimefall.Assist
             WeatherTypeMetadata weatherMetadata = ScriptableObject.CreateInstance<WeatherTypeMetadata>();
             weatherMetadata.hideFlags |= HideFlags.HideAndDontSave;
             weatherMetadata.name = metadataName;
-            weatherMetadata.AnalyticsName = metadataName.Replace(" ", "").Replace("Metadata", "");
+            
             weatherMetadata.Icon = weatherIcon;
             weatherMetadata.PediaEntry = weatherPediaEntry;
+            weatherMetadata.AnalyticsName = metadataName.Replace(" ", "").Replace("Metadata", "");
             return weatherMetadata;
         }
 
@@ -58,6 +58,7 @@ namespace MoreSlimefall.Assist
             WeatherStateDefinition weatherStateDefinition = ScriptableObject.CreateInstance<WeatherStateDefinition>();
             weatherStateDefinition.hideFlags |= HideFlags.HideAndDontSave;
             weatherStateDefinition.name = stateName;
+
             weatherStateDefinition.Guid = "WeatherStateDefinition." + stateName.Replace(" ", "");
             weatherStateDefinition.StateName = stateName.Replace(" State", "");
 
@@ -67,32 +68,6 @@ namespace MoreSlimefall.Assist
 
             RegisterWeatherState(weatherStateDefinition);
             return weatherStateDefinition;
-        }
-
-        public static FixedPediaEntry AddWeatherPedia(string pediaEntryName, Sprite pediaIcon, string pediaTitle, string pediaIntro, string pediaDescription)
-        {
-            string textId = pediaEntryName.ToLower().Replace(" ", "_");
-
-            LocalizedString title = TranslationHelper.CreateTranslation("Pedia", "t." + textId, pediaTitle);
-            LocalizedString intro = TranslationHelper.CreateTranslation("Pedia", "m.intro." + textId, pediaIntro);
-            LocalizedString description = TranslationHelper.CreateTranslation("PediaPage", "m.desc." + textId, pediaDescription);
-
-            PediaEntryDetail[] pediaEntryDetails = new PediaEntryDetail[]
-            {
-                new PediaEntryDetail()
-                {
-                    Section = Get<PediaDetailSection>("About"),
-                    Text = description,
-                    TextGamepad = description,
-                    TextPS4 = description
-                }
-            };
-
-            FixedPediaEntry fixedPediaEntry = PediaHelper.CreateFixedEntry(pediaEntryName, textId, pediaIcon, Get<PediaHighlightSet>("TutorialPediaTemplate"), title, intro, pediaEntryDetails);
-            weatherPediasToPatch.TryAdd(fixedPediaEntry);
-            PediaHelper.RegisterPediaEntry(fixedPediaEntry);
-
-            return fixedPediaEntry;
         }
     }
 }

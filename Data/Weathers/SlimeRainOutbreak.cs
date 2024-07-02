@@ -41,7 +41,7 @@ namespace MoreSlimefall.Data.Weathers
             slimeRainOutbreak = WeatherHelper.CreateWeatherState("Slime Rain Outbreak State", outbreakActivities, 3, 0.5f);
             slimeRainOutbreak.StateName = "Slime Rain Outbreak";
 
-            outbreakMetadata = WeatherHelper.CreateWeatherMetadata("Outbreak Metadata", LocalAssets.iconWeatherTarrainSpr, null);
+            outbreakMetadata = WeatherHelper.CreateWeatherMetadata("Outbreak Metadata", null, null);
 
             // CURRENT WEATHER STATES
             currentRainLightStates = ScriptableObject.CreateInstance<CurrentWeatherStates>();
@@ -67,7 +67,6 @@ namespace MoreSlimefall.Data.Weathers
                         currentRainMedStates.State = LocalWeathers.rainMedState;
                         currentRainHeavyStates.State = LocalWeathers.rainHeavyState;
 
-                        CreatePedia();
                         CreateRainFallFX();
                         CreateActivities();
                         CreateTransitions();
@@ -83,17 +82,28 @@ namespace MoreSlimefall.Data.Weathers
             }
         }
 
-        private static void CreatePedia()
+        internal static void CreatePedia()
         {
-            outbreakEntry = WeatherHelper.AddWeatherPedia("Outbreak", LocalAssets.iconWeatherTarrainSpr,
-                "Slime Outbreak",
-
-                "You've got to be kidding me...",
-
-                "A Tarr outbreak from above, the rare but deadly phenomenon of when the falling of cute slimes is disrupted in the clouds and starts to materialize a batch of ravenous rainbows. " +
-                "When slimefall is at an unusually high level, various slimes will fall, and there is the potential occurrence of a large, unstoppable outbreak of Tarr in the sky. " +
-                "It's best to take cover or dare you fight back..."
+            outbreakEntry = PediaHelper.CreateFixedEntry(LocalAssets.iconWeatherTarrainSpr, "Outbreak", "outbreak", Get<PediaHighlightSet>("TutorialPediaTemplate"),
+                TranslationHelper.CreateTranslation("Pedia", "t.outbreak", "Slime Outbreak"),
+                TranslationHelper.CreateTranslation("Pedia", "m.intro.outbreak", "You've got to be kidding me..."),
+                [
+                    new PediaEntryDetail()
+                    {
+                        Section = Get<PediaDetailSection>("About"),
+                        Text = TranslationHelper.CreateTranslation("PediaPage", "m.desc.outbreak",
+                            "A Tarr outbreak from above, the rare but deadly phenomenon of when the falling of cute slimes is disrupted in the clouds and starts to materialize a batch of ravenous rainbows. " +
+                            "When slimefall is at an unusually high level, various slimes will fall, and there is the potential occurrence of a large, unstoppable outbreak of Tarr in the sky. " +
+                            "It's best to take cover or dare you fight back..."
+                        ),
+                        TextGamepad = new(),
+                        TextPS4 = new()
+                    }
+                ]
             );
+
+            PediaHelper.AddPediaToCategory(outbreakEntry, Get<PediaCategory>("Weather"));
+
             outbreakMetadata.PediaEntry = outbreakEntry;
         }
 
@@ -134,12 +144,12 @@ namespace MoreSlimefall.Data.Weathers
         {
             Il2CppSystem.Collections.Generic.List<WeatherPatternDefinition.Transition> transitions = new();
             transitions.TryAdd(WeatherHelper.CreatePatternTransition(toNoneChance, null, Array.Empty<AbstractWeatherCondition>()));
-            transitions.TryAdd(WeatherHelper.CreatePatternTransition(1, null, new AbstractWeatherCondition[]
-            {
+            transitions.TryAdd(WeatherHelper.CreatePatternTransition(1, null,
+            [
                 currentRainLightStates,
                 currentRainMedStates,
                 currentRainHeavyStates
-            }));
+            ]));
 
             WeatherPatternDefinition.TransitionList transitionList = new()
             {
