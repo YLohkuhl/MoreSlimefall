@@ -21,8 +21,8 @@ namespace MoreSlimefall.Data.Weathers
                         LocalWeathers.slimeRainStateBluffs.Activities.Remove(toArray.FirstOrDefault(x => x?.Activity == Get<SpawnActorActivity>("Rain Cotton Slimes")));
                         LocalWeathers.slimeRainStateBluffs.Activities.Remove(toArray.FirstOrDefault(x => x?.Activity == Get<SpawnActorActivity>("Rain Saber Slimes")));
 
-                        LocalWeathers.slimeRainStateBluffs.Activities.TryAdd(WeatherHelper.CreateStateActivity(1, LocalSpawnActivities.globalRainPinkSlimes));
-                        LocalWeathers.slimeRainStateBluffs.Activities.TryAdd(WeatherHelper.CreateStateActivity(1, LocalSpawnActivities.bluffsRainCottonSlimes));
+                        LocalWeathers.slimeRainStateBluffs.Activities.TryAdd(WeatherHelper.CreateStateActivity(LocalSpawnActivities.globalRainPinkSlimes, 1));
+                        LocalWeathers.slimeRainStateBluffs.Activities.TryAdd(WeatherHelper.CreateStateActivity(LocalSpawnActivities.bluffsRainCottonSlimes, 1));
                         break;
                     }
             }

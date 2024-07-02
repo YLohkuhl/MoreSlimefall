@@ -46,20 +46,20 @@ namespace MoreSlimefall.Data.Weathers
             foreach (var activity in LocalWeathers.slimeRainStateStrand.Activities)
                 moderateStrandActivities.TryAdd(activity);
 
-            moderateStrandActivities.TryAdd(WeatherHelper.CreateStateActivity(1, LocalSpawnActivities.strandRainCottonSlimes));
-            moderateStrandActivities.TryAdd(WeatherHelper.CreateStateActivity(1, LocalSpawnActivities.strandRainAnglerSlimes));
-            moderateStrandActivities.TryAdd(WeatherHelper.CreateStateActivity(1, LocalSpawnActivities.strandRainHoneySlimes));
-            moderateStrandActivities.TryAdd(WeatherHelper.CreateStateActivity(1, LocalSpawnActivities.globalRainPhosphorSlimes));
+            moderateStrandActivities.TryAdd(WeatherHelper.CreateStateActivity(LocalSpawnActivities.strandRainCottonSlimes, 1));
+            moderateStrandActivities.TryAdd(WeatherHelper.CreateStateActivity(LocalSpawnActivities.strandRainAnglerSlimes, 1));
+            moderateStrandActivities.TryAdd(WeatherHelper.CreateStateActivity(LocalSpawnActivities.strandRainHoneySlimes, 1));
+            moderateStrandActivities.TryAdd(WeatherHelper.CreateStateActivity(LocalSpawnActivities.globalRainPhosphorSlimes, 1));
         }
 
         private static void CreateTransitions()
         {
             Il2CppSystem.Collections.Generic.List<WeatherPatternDefinition.Transition> transitions = new();
-            transitions.TryAdd(WeatherHelper.CreatePatternTransition(toNoneChance, null, Array.Empty<AbstractWeatherCondition>()));
-            transitions.TryAdd(WeatherHelper.CreatePatternTransition(toPreviousChance, LocalWeathers.slimeRainStateStrand, Array.Empty<AbstractWeatherCondition>()));
-            transitions.TryAdd(WeatherHelper.CreatePatternTransition(toSevereChance, SlimeRainSevereStrand.slimeRainSevereStrand, Array.Empty<AbstractWeatherCondition>()));
+            transitions.TryAdd(WeatherHelper.CreatePatternTransition(null, toNoneChance, Array.Empty<AbstractWeatherCondition>()));
+            transitions.TryAdd(WeatherHelper.CreatePatternTransition(LocalWeathers.slimeRainStateStrand, toPreviousChance, Array.Empty<AbstractWeatherCondition>()));
+            transitions.TryAdd(WeatherHelper.CreatePatternTransition(SlimeRainSevereStrand.slimeRainSevereStrand, toSevereChance, Array.Empty<AbstractWeatherCondition>()));
 
-            LocalWeathers.slimeRainPatternStrand.RunningTransitions[0].Transitions.TryAdd(WeatherHelper.CreatePatternTransition(toModerateChance, slimeRainModerateStrand, Array.Empty<AbstractWeatherCondition>()));
+            LocalWeathers.slimeRainPatternStrand.RunningTransitions[0].Transitions.TryAdd(WeatherHelper.CreatePatternTransition(slimeRainModerateStrand, toModerateChance, Array.Empty<AbstractWeatherCondition>()));
             LocalWeathers.slimeRainPatternStrand.RunningTransitions.TryAdd(new WeatherPatternDefinition.TransitionList() 
             {
                 FromState = slimeRainModerateStrand,

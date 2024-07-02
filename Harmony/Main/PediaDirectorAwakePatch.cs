@@ -19,10 +19,7 @@ namespace MoreSlimefall.Harmony
             {
                 if (!pediaEntry)
                     continue;
-
                 pediaEntry._unlockInfoProvider = __instance.Cast<IUnlockInfoProvider>();
-                if (pediaEntry._isUnlockedInitially)
-                    __instance._initUnlocked = __instance._initUnlocked.AddItem(pediaEntry).ToArray();
             }
         }
     }
