@@ -73,10 +73,10 @@ namespace MoreSlimefall.Assist.Extension
                     var toArray = IL2CPP_zoneToPatternDict[zone].RunningTransitions.ToArray();
                     int index = IL2CPP_zoneToPatternDict[zone].RunningTransitions.IndexOf(toArray.FirstOrDefault(x => x?.FromState == IL2CPP_zoneToStatesDict[zone][ext.SlimefallTier - 1]));
                     IL2CPP_zoneToPatternDict[zone].RunningTransitions[index].Transitions
-                        .TryAdd(WeatherHelper.CreatePatternTransition(ext.StartChancePerHour, ext.StateDefinition, Array.Empty<AbstractWeatherCondition>()));
+                        .TryAdd(WeatherHelper.CreatePatternTransition(ext.StateDefinition, ext.StartChancePerHour, Array.Empty<AbstractWeatherCondition>()));
                 }
             }
-            ext.StateTransitions.TryAdd(WeatherHelper.CreatePatternTransition(ext.StopChancePerHour, null, Array.Empty<AbstractWeatherCondition>()));
+            ext.StateTransitions.TryAdd(WeatherHelper.CreatePatternTransition(null, ext.StopChancePerHour, Array.Empty<AbstractWeatherCondition>()));
 
             foreach (ZoneDefinition zone in ext.ShowForZones)
             {
