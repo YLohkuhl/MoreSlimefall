@@ -22,7 +22,7 @@ namespace MoreSlimefall.Assist
             Get<WeatherStateCollection>("All Weather States")?.items?.TryAdd(weatherState);
         }
 
-        public static WeatherStateDefinition.ActivityIntensityMapping CreateStateActivity(AbstractActivity activity, float intensity)
+        public static WeatherStateDefinition.ActivityIntensityMapping CreateStateActivity(float intensity, AbstractActivity activity)
         {
             return new WeatherStateDefinition.ActivityIntensityMapping()
             {
@@ -31,7 +31,7 @@ namespace MoreSlimefall.Assist
             };
         }
 
-        public static WeatherPatternDefinition.Transition CreatePatternTransition(WeatherStateDefinition toState, float chancePerHour, AbstractWeatherCondition[] conditions)
+        public static WeatherPatternDefinition.Transition CreatePatternTransition(float chancePerHour, WeatherStateDefinition toState, AbstractWeatherCondition[] conditions)
         {
             return new WeatherPatternDefinition.Transition()
             {
@@ -41,29 +41,29 @@ namespace MoreSlimefall.Assist
             };
         }
 
-        public static WeatherTypeMetadata CreateWeatherMetadata(Sprite icon, string name, PediaEntry pediaEntry)
+        public static WeatherTypeMetadata CreateWeatherMetadata(string metadataName, Sprite weatherIcon, PediaEntry weatherPediaEntry)
         {
             WeatherTypeMetadata weatherMetadata = ScriptableObject.CreateInstance<WeatherTypeMetadata>();
             weatherMetadata.hideFlags |= HideFlags.HideAndDontSave;
-            weatherMetadata.name = name;
-
-            weatherMetadata.Icon = icon;
-            weatherMetadata.PediaEntry = pediaEntry;
-            weatherMetadata.AnalyticsName = name.Replace(" ", "").Replace("Metadata", "");
+            weatherMetadata.name = metadataName;
+            
+            weatherMetadata.Icon = weatherIcon;
+            weatherMetadata.PediaEntry = weatherPediaEntry;
+            weatherMetadata.AnalyticsName = metadataName.Replace(" ", "").Replace("Metadata", "");
             return weatherMetadata;
         }
 
-        public static WeatherStateDefinition CreateWeatherState(string name, Il2CppSystem.Collections.Generic.List<WeatherStateDefinition.ActivityIntensityMapping> activities, int mapTier = 0, float minDurationHours = 3)
+        public static WeatherStateDefinition CreateWeatherState(string stateName, Il2CppSystem.Collections.Generic.List<WeatherStateDefinition.ActivityIntensityMapping> stateActivities, int stateTier = 0, float minDurationHours = 3)
         {
             WeatherStateDefinition weatherStateDefinition = ScriptableObject.CreateInstance<WeatherStateDefinition>();
             weatherStateDefinition.hideFlags |= HideFlags.HideAndDontSave;
-            weatherStateDefinition.name = name;
+            weatherStateDefinition.name = stateName;
 
-            weatherStateDefinition.Guid = "WeatherStateDefinition." + name.Replace(" ", "");
-            weatherStateDefinition.StateName = name.Replace("State", "");
+            weatherStateDefinition.Guid = "WeatherStateDefinition." + stateName.Replace(" ", "");
+            weatherStateDefinition.StateName = stateName.Replace(" State", "");
 
-            weatherStateDefinition.MapTier = mapTier;
-            weatherStateDefinition.Activities = activities;
+            weatherStateDefinition.MapTier = stateTier;
+            weatherStateDefinition.Activities = stateActivities;
             weatherStateDefinition.MinDurationHours = minDurationHours;
 
             RegisterWeatherState(weatherStateDefinition);

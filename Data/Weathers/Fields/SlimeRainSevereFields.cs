@@ -54,15 +54,15 @@ namespace MoreSlimefall.Data.Weathers
             {
                 if (severeFieldsActivities.ToArray().FirstOrDefault(x => x?.Activity == globalActivity).IsNotNull())
                     continue;
-                severeFieldsActivities.TryAdd(WeatherHelper.CreateStateActivity(globalActivity, 1));
+                severeFieldsActivities.TryAdd(WeatherHelper.CreateStateActivity(1, globalActivity));
             }
         }
 
         private static void CreateTransitions()
         {
             Il2CppSystem.Collections.Generic.List<WeatherPatternDefinition.Transition> transitions = new();
-            transitions.TryAdd(WeatherHelper.CreatePatternTransition(null, toNoneChance, Array.Empty<AbstractWeatherCondition>()));
-            transitions.TryAdd(WeatherHelper.CreatePatternTransition(SlimeRainModerateFields.slimeRainModerateFields, toPreviousChance, Array.Empty<AbstractWeatherCondition>()));
+            transitions.TryAdd(WeatherHelper.CreatePatternTransition(toNoneChance, null, Array.Empty<AbstractWeatherCondition>()));
+            transitions.TryAdd(WeatherHelper.CreatePatternTransition(toPreviousChance, SlimeRainModerateFields.slimeRainModerateFields, Array.Empty<AbstractWeatherCondition>()));
 
             LocalWeathers.slimeRainPatternFields.RunningTransitions.TryAdd(new WeatherPatternDefinition.TransitionList()
             {
@@ -84,7 +84,7 @@ namespace MoreSlimefall.Data.Weathers
                         if (transitionList?.FromState == slimeRainSevereFields)
                         {
                             if (transitionList.Transitions.ToArray().FirstOrDefault(x => x?.ToState == SlimeRainOutbreak.slimeRainOutbreak).IsNull())
-                                transitionList.Transitions.TryAdd(WeatherHelper.CreatePatternTransition(SlimeRainOutbreak.slimeRainOutbreak, toOutbreakChance, Array.Empty<AbstractWeatherCondition>()));
+                                transitionList.Transitions.TryAdd(WeatherHelper.CreatePatternTransition(toOutbreakChance, SlimeRainOutbreak.slimeRainOutbreak, Array.Empty<AbstractWeatherCondition>()));
                         }
                     }
                 }

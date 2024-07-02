@@ -41,7 +41,7 @@ namespace MoreSlimefall.Data.Weathers
             slimeRainOutbreak = WeatherHelper.CreateWeatherState("Slime Rain Outbreak State", outbreakActivities, 3, 0.5f);
             slimeRainOutbreak.StateName = "Slime Rain Outbreak";
 
-            outbreakMetadata = WeatherHelper.CreateWeatherMetadata(null, "Outbreak Metadata", null);
+            outbreakMetadata = WeatherHelper.CreateWeatherMetadata("Outbreak Metadata", null, null);
 
             // CURRENT WEATHER STATES
             currentRainLightStates = ScriptableObject.CreateInstance<CurrentWeatherStates>();
@@ -134,17 +134,17 @@ namespace MoreSlimefall.Data.Weathers
             unlockOutbreakPedia.WeatherVFXType = baseUnlockPedia.WeatherVFXType;
             unlockOutbreakPedia.VisualIntensityThreshold = baseUnlockPedia.VisualIntensityThreshold;
 
-            outbreakActivities.TryAdd(WeatherHelper.CreateStateActivity(LocalSpawnActivities.outbreakRainTarrSlimes, 1));
-            outbreakActivities.TryAdd(WeatherHelper.CreateStateActivity(Get<RegionalVFXActivity>("Run Slime Rain VFX"), 1));
-            outbreakActivities.TryAdd(WeatherHelper.CreateStateActivity(Get<UnlockPediaActivity>("Unlock Slime Rain Pedia"), 1));
-            outbreakActivities.TryAdd(WeatherHelper.CreateStateActivity(unlockOutbreakPedia, 1));
+            outbreakActivities.TryAdd(WeatherHelper.CreateStateActivity(1, LocalSpawnActivities.outbreakRainTarrSlimes));
+            outbreakActivities.TryAdd(WeatherHelper.CreateStateActivity(1, Get<RegionalVFXActivity>("Run Slime Rain VFX")));
+            outbreakActivities.TryAdd(WeatherHelper.CreateStateActivity(1, Get<UnlockPediaActivity>("Unlock Slime Rain Pedia")));
+            outbreakActivities.TryAdd(WeatherHelper.CreateStateActivity(1, unlockOutbreakPedia));
         }
 
         private static void CreateTransitions()
         {
             Il2CppSystem.Collections.Generic.List<WeatherPatternDefinition.Transition> transitions = new();
-            transitions.TryAdd(WeatherHelper.CreatePatternTransition(null, toNoneChance, Array.Empty<AbstractWeatherCondition>()));
-            transitions.TryAdd(WeatherHelper.CreatePatternTransition(null, 1,
+            transitions.TryAdd(WeatherHelper.CreatePatternTransition(toNoneChance, null, Array.Empty<AbstractWeatherCondition>()));
+            transitions.TryAdd(WeatherHelper.CreatePatternTransition(1, null,
             [
                 currentRainLightStates,
                 currentRainMedStates,

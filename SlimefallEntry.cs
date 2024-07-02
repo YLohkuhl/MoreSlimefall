@@ -8,7 +8,7 @@ using MoreSlimefall.Assist;
 using Il2CppMonomiPark.SlimeRancher;
 using MoreSlimefall.Components;
 
-[assembly: MelonInfo(typeof(SlimefallEntry), "More Slimefall", "1.0.3", "YLohkuhl", "https://www.nexusmods.com/slimerancher2/mods/72")]
+[assembly: MelonInfo(typeof(SlimefallEntry), "More Slimefall", "1.0.2", "YLohkuhl", "https://www.nexusmods.com/slimerancher2/mods/72")]
 [assembly: MelonGame("MonomiPark", "SlimeRancher2")]
 [assembly: MelonColor(0, 84, 231, 222)]
 namespace MoreSlimefall

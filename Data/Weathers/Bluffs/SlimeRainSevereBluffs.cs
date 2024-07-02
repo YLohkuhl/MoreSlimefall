@@ -50,9 +50,9 @@ namespace MoreSlimefall.Data.Weathers
             foreach (var activity in SlimeRainModerateBluffs.slimeRainModerateBluffs.Activities)
                 severeBluffsActivities.TryAdd(activity);
 
-            severeBluffsActivities.TryAdd(WeatherHelper.CreateStateActivity(LocalSpawnActivities.bluffsRainHunterSlimes, 1));
-            severeBluffsActivities.TryAdd(WeatherHelper.CreateStateActivity(LocalSpawnActivities.bluffsRainCrystalSlimes, 1));
-            severeBluffsActivities.TryAdd(WeatherHelper.CreateStateActivity(LocalSpawnActivities.bluffsRainBoomSlimes, 1));
+            severeBluffsActivities.TryAdd(WeatherHelper.CreateStateActivity(1, LocalSpawnActivities.bluffsRainHunterSlimes));
+            severeBluffsActivities.TryAdd(WeatherHelper.CreateStateActivity(1, LocalSpawnActivities.bluffsRainCrystalSlimes));
+            severeBluffsActivities.TryAdd(WeatherHelper.CreateStateActivity(1, LocalSpawnActivities.bluffsRainBoomSlimes));
 
             foreach (var globalActivity in LocalSpawnActivities._globalSpawnActivities)
             {
@@ -60,15 +60,15 @@ namespace MoreSlimefall.Data.Weathers
                     continue;
                 if (globalActivity == LocalSpawnActivities.globalRainPuddleSlimes || globalActivity == LocalSpawnActivities.globalRainTangleSlimes)
                     continue;
-                severeBluffsActivities.TryAdd(WeatherHelper.CreateStateActivity(globalActivity, 1));
+                severeBluffsActivities.TryAdd(WeatherHelper.CreateStateActivity(1, globalActivity));
             }
         }
 
         private static void CreateTransitions()
         {
             Il2CppSystem.Collections.Generic.List<WeatherPatternDefinition.Transition> transitions = new();
-            transitions.TryAdd(WeatherHelper.CreatePatternTransition(null, toNoneChance, Array.Empty<AbstractWeatherCondition>()));
-            transitions.TryAdd(WeatherHelper.CreatePatternTransition(SlimeRainModerateBluffs.slimeRainModerateBluffs, toPreviousChance, Array.Empty<AbstractWeatherCondition>()));
+            transitions.TryAdd(WeatherHelper.CreatePatternTransition(toNoneChance, null, Array.Empty<AbstractWeatherCondition>()));
+            transitions.TryAdd(WeatherHelper.CreatePatternTransition(toPreviousChance, SlimeRainModerateBluffs.slimeRainModerateBluffs, Array.Empty<AbstractWeatherCondition>()));
 
             LocalWeathers.slimeRainPatternBluffs.RunningTransitions.TryAdd(new WeatherPatternDefinition.TransitionList()
             {
@@ -90,7 +90,7 @@ namespace MoreSlimefall.Data.Weathers
                         if (transitionList?.FromState == slimeRainSevereBluffs)
                         {
                             if (transitionList.Transitions.ToArray().FirstOrDefault(x => x?.ToState == SlimeRainOutbreak.slimeRainOutbreak).IsNull())
-                                transitionList.Transitions.TryAdd(WeatherHelper.CreatePatternTransition(SlimeRainOutbreak.slimeRainOutbreak, toOutbreakChance, Array.Empty<AbstractWeatherCondition>()));
+                                transitionList.Transitions.TryAdd(WeatherHelper.CreatePatternTransition(toOutbreakChance, SlimeRainOutbreak.slimeRainOutbreak, Array.Empty<AbstractWeatherCondition>()));
                         }
                     }
                 }
